@@ -1,12 +1,19 @@
 <template>
-  <header class="header">
-    <img src="/logo.svg" alt="" class="header-logo">
-    <h2>My Favorite Movies</h2>
-  </header>
-  <div class="movies">
-    <h3>All Movies</h3>
-    <Movie v-for="movie of MovieStore.movies" :key="movie.id" :movie="movie"></Movie>
-  </div>
+  <main>
+    <header class="header">
+      <img src="/logo.svg" alt="" class="header-logo">
+      <h2>My Favorite Movies</h2>
+    </header>
+    <div class="tabs">
+      <button :class="['btn', {btn_green:MovieStore.activeTab === 1}]">Favorite</button>
+      <button :class="['btn', {btn_green:MovieStore.activeTab === 2}]">Search</button>
+    </div>
+    <div class="movies" v-if="MovieStore.activeTab === 1">
+      <h3>All Movies</h3>
+      <Movie v-for="movie of MovieStore.movies" :key="movie.id" :movie="movie"></Movie>
+    </div>
+    <div class="search" v-else>Search</div>
+  </main>
 </template>
 
 <script setup>

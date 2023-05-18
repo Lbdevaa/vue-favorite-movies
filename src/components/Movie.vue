@@ -1,15 +1,20 @@
 <template>
-    <main>
-        <div class="movie">
-            <img :src="`${prefixUrl}/${movie.poster_path}`" :alt="movie.original_title" class="movie-img">
-            <div class="">
+    <div class="movie">
+        <img :src="`${prefixUrl}/${movie.poster_path}`" :alt="movie.original_title" class="movie-img">
+        <div>
                 <div class="movie-name">
                     {{ movie.original_title }}({{ movie.release_date }})
                 </div>
                 <span class="movie-overview">{{ movie.overview }}</span>
+            <div class="movie-buttons">
+                <button class="btn movie-buttons-watched">
+                    <span v-if="!movie.isWatched">Watched</span>
+                    <span v-else>Unwatched</span>
+                </button>
+                <button class="btn movie-buttons-delete">Delete</button>
             </div>
         </div>
-    </main>
+    </div> 
 </template>
 
 <script setup>
@@ -24,6 +29,23 @@
 </script>
 
 <style lang="css" scoped>
+.btn {
+  border: none;
+  width: 100px;
+  height: 40px;
+  font-size: 14px;
+  margin: 0 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #efefef;
+}
+.btn:hover {
+  opacity: 0.7;
+}
+.btn_green {
+  background: #37df5c;
+}
+
 .movie {
   display: grid;
   grid-template-columns: 200px 1fr;

@@ -22,5 +22,6 @@ export const useMovieStore = defineStore('movieStore', {
         isWatched: false,
       },
     ],
+    activeTab: 1,
   }),
 });

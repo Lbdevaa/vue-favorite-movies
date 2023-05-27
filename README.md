@@ -10,3 +10,9 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 node -v 19.7.0
 
 api TMDB - https://developer.themoviedb.org/docs/getting-started
+
+option vs setup(composition - новый подход) stores api pinia
+
+Composition API предоставляет новые хуки жизненного цикла компонента, такие как onMounted, onUpdated и onUnmounted, которые позволяют более гибко управлять логикой компонента.
+
+Composition API делает код более читаемым, модульным и повторно используемым, что упрощает разработку и поддержку компонентов.

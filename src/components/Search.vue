@@ -10,6 +10,7 @@
 </template>
 
 <script setup>
+    // store в виде composition api
     import Loader from './Loader.vue'
     import Movie from './Movie.vue'
     import {ref} from 'vue'

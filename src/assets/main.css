@@ -9,4 +9,7 @@ body {
 main {
   max-width: 600px;
   margin: auto;
+  background: #f7f6ff;
+  padding: 20px;
+  box-shadow: 0px 0px 20px 0px #cbc7ef;
 }

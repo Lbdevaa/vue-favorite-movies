@@ -5,17 +5,17 @@
       <h2>My Favorite Movies</h2>
     </header>
     <div class="tabs">
-      <button :class="['btn', {btn_green:MovieStore.activeTab === 1}]">Favorite</button>
-      <button :class="['btn', {btn_green:MovieStore.activeTab === 2}]">Search</button>
+      <button :class="['btn', {btn_green:movieStore.activeTab === 1}]" @click="setTab(1)">Favorite</button>
+      <button :class="['btn', {btn_green:movieStore.activeTab === 2}]" @click="setTab(2)">Search</button>
     </div>
-    <div class="movies" v-if="MovieStore.activeTab === 1">
+    <div class="movies" v-if="movieStore.activeTab === 1">
       <div>
-        <h3>Watched Movies(count:{{ MovieStore.watchedMovies.length }})</h3>
-        <Movie v-for="movie of MovieStore.watchedMovies" :key="movie.id" :movie="movie"></Movie>
+        <h3>Watched Movies(count:{{ movieStore.watchedMovies.length }})</h3>
+        <Movie v-for="movie of movieStore.watchedMovies" :key="movie.id" :movie="movie"></Movie>
       </div>
       <div>
-        <h3>All Movies(count: {{ MovieStore.totalCountMovies }})</h3>
-        <Movie v-for="movie of MovieStore.movies" :key="movie.id" :movie="movie"></Movie>
+        <h3>All Movies(count: {{ movieStore.totalCountMovies }})</h3>
+        <Movie v-for="movie of movieStore.movies" :key="movie.id" :movie="movie"></Movie>
       </div>
     </div>
     <div class="search" v-else>Search</div>
@@ -26,7 +26,10 @@
   import  {useMovieStore} from './stories/MovieStore'
   import Movie from './components/Movie.vue'
   
-  const MovieStore = useMovieStore()
+  const movieStore = useMovieStore()
+  const setTab = (id) =>{
+    movieStore.setActiveTab(id)
+  }
 </script>
 
 <style scoped>

@@ -2,10 +2,10 @@
     <div class="movie">
         <img :src="`${prefixUrl}/${movie.poster_path}`" :alt="movie.original_title" class="movie-img">
         <div>
-                <div class="movie-name">
-                    {{ movie.original_title }}({{ movie.release_date }})
-                </div>
-                <span class="movie-overview">{{ movie.overview }}</span>
+            <div class="movie-name">
+                {{ movie.original_title }}({{ movie.release_date }})
+            </div>
+            <span class="movie-overview">{{ movie.overview }}</span>
             <div class="movie-buttons" v-if="!isSearch">
                 <button class="btn movie-buttons-watched" @click="movieStore.toggleWatched(movie.id)">
                     <span v-if="!movie.isWatched">Watched</span>
@@ -13,7 +13,7 @@
                 </button>
                 <button class="btn movie-buttons-delete" @click="movieStore.deleteMovie(movie.id)">Delete</button>
             </div>
-            <button class="btn btn_green">
+            <button class="btn btn_green" @click="searchStore.addToUserMovies(movie)" v-else>
                   Add
             </button>
         </div>
@@ -22,20 +22,22 @@
 
 <script setup>
   import { useMovieStore } from '../stories/MovieStore';
+  import { useSearchStore } from '../stories/SearchStore';
 
   const movieStore = useMovieStore()
     // const prefixUrl = 'https://loremflickr.com'
     const prefixUrl = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2'
+    const searchStore = useSearchStore()
     const props = defineProps({
         movie:{
             type: Object,
             required: true,
-            default: ()=>{}
+            default: () => {}
         },
         isSearch:{
           type:Boolean,
           required: false,
-         default: false
+          default: false
         }
     })
 </script>

@@ -6,26 +6,36 @@
                     {{ movie.original_title }}({{ movie.release_date }})
                 </div>
                 <span class="movie-overview">{{ movie.overview }}</span>
-            <div class="movie-buttons">
+            <div class="movie-buttons" v-if="!isSearch">
                 <button class="btn movie-buttons-watched" @click="movieStore.toggleWatched(movie.id)">
                     <span v-if="!movie.isWatched">Watched</span>
                     <span v-else>Unwatched</span>
                 </button>
                 <button class="btn movie-buttons-delete" @click="movieStore.deleteMovie(movie.id)">Delete</button>
             </div>
+            <button class="btn btn_green">
+                  Add
+            </button>
         </div>
     </div> 
 </template>
 
 <script setup>
   import { useMovieStore } from '../stories/MovieStore';
+
   const movieStore = useMovieStore()
-    const prefixUrl = 'https://loremflickr.com'
+    // const prefixUrl = 'https://loremflickr.com'
+    const prefixUrl = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2'
     const props = defineProps({
         movie:{
             type: Object,
             required: true,
             default: ()=>{}
+        },
+        isSearch:{
+          type:Boolean,
+          required: false,
+         default: false
         }
     })
 </script>

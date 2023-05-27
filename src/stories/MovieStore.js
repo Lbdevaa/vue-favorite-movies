@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 
+// movieStore - уникальный id
 export const useMovieStore = defineStore('movieStore', {
   state: () => ({
     movies: [
@@ -22,7 +23,7 @@ export const useMovieStore = defineStore('movieStore', {
         isWatched: false,
       },
     ],
-    activeTab: 1,
+    activeTab: 2,
   }),
   getters: {
     watchedMovies() {

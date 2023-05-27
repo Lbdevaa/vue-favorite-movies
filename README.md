@@ -16,3 +16,5 @@ option vs setup(composition - новый подход) stores api pinia
 Composition API предоставляет новые хуки жизненного цикла компонента, такие как onMounted, onUpdated и onUnmounted, которые позволяют более гибко управлять логикой компонента.
 
 Composition API делает код более читаемым, модульным и повторно используемым, что упрощает разработку и поддержку компонентов.
+
+localStorage

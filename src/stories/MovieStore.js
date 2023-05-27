@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 // movieStore - уникальный id
 
@@ -53,6 +53,11 @@ export const useMovieStore = defineStore('movieStore', () => {
   const movies = ref([]);
   const activeTab = ref(2);
 
+  const moviesInLocalStorage = localStorage.getItem('movies');
+  if (moviesInLocalStorage) {
+    movies.value = JSON.parse(moviesInLocalStorage)._value;
+  }
+
   // геттеры оборачиваются в computed
   const watchedMovies = computed(() =>
     movies.value.filter((el) => el.isWatched)
@@ -72,6 +77,16 @@ export const useMovieStore = defineStore('movieStore', () => {
   const deleteMovie = (id) => {
     movies.value = movies.value.filter((el) => el.id !== id);
   };
+
+  // отслеживание изменений movies
+  watch(
+    () => movies,
+    (state) => {
+      localStorage.setItem('movies', JSON.stringify(state));
+    },
+    // глубокое отслеживание изменения вложенных свойств объекта или элементов массива.
+    { deep: true }
+  );
 
   return {
     movies,
